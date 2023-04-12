@@ -1,0 +1,251 @@
+:global {
+  body[data-theme="light"] {
+    --default-background-color: var(--light-background);
+    --input-background-color: rgba(27, 61, 77, 0.07);
+  }
+
+  body[data-theme="dark"] {
+    --default-background-color: var(--dark-background);
+    --input-background-color: rgba(190, 208, 220, 0.07);
+  }
+}
+
+@mixin loginInput {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: var(--input-background-color);
+  color: var(--logo-text-color);
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.background {
+  width: 80%;
+  height: 420px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+
+  .shape {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    border-radius: 50%;
+
+    &:first-child {
+      background: linear-gradient(#1845ad, #23a2f6);
+      left: -30px;
+      top: -40px;
+    }
+
+    &:last-child {
+      background: linear-gradient(to right, #ff512f, #f09819);
+      right: -30px;
+      bottom: -40px;
+    }
+  }
+}
+
+.loginForm {
+  height: 420px;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 30px 25px;
+  color: var(--logo-text-color);
+  letter-spacing: 0.5px;
+}
+
+.emptyInput {
+  @include loginInput();
+  outline: none;
+}
+
+.validInput {
+  @include loginInput();
+  outline: 1px solid #049704;
+}
+
+.invalidInput {
+  @include loginInput();
+  outline: 1px solid tomato;
+}
+
+.loginTitle {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+.loginLable {
+  position: relative;
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.loginButton {
+  margin-top: 30px;
+  width: 100%;
+  border: none;
+  background-color: var(--logo-text-color);
+  color: var(--default-background-color);
+
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+
+.changeFormLable {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: var(--logo-text-color);
+
+  .changeFormButton {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: var(--logo-text-color);
+    cursor: pointer;
+  }
+}
+
+.tooltipError {
+  font-size: 12px;
+  position: absolute;
+  bottom: -25px;
+  color: tomato;
+}
+
+.tooltipSuccess {
+  font-size: 12px;
+  position: absolute;
+  bottom: -25px;
+  color: #049704;
+}
+
+@media screen and (min-width: 480px) {
+  .background {
+    width: 70%;
+    height: 420px;
+
+    .shape {
+      height: 130px;
+      width: 130px;
+
+      &:first-child {
+        left: -70px;
+        top: -40px;
+      }
+
+      &:last-child {
+        right: -70px;
+        bottom: -50px;
+      }
+    }
+  }
+
+  .loginForm {
+    height: 420px;
+    width: 70%;
+  }
+
+  .changeFormLable {
+    flex-direction: row;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .background {
+    width: 50%;
+    height: 470px;
+  }
+
+  .loginForm {
+    height: 470px;
+    width: 50%;
+
+    padding: 30px 25px;
+  }
+
+  .loginTitle {
+    font-size: 26px;
+  }
+
+  .changeFormLable {
+    font-size: 16px;
+  }
+
+  .loginButton {
+    margin-top: 50px;
+  }
+
+  .tooltipError {
+    top: 0;
+    right: 0;
+    font-size: 16px;
+  }
+
+  .tooltipSuccess {
+    top: 0;
+    right: 0;
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .background {
+    width: 33%;
+    height: 520px;
+
+    .shape {
+      height: 200px;
+      width: 200px;
+    }
+    .shape:first-child {
+      left: -80px;
+      top: -80px;
+    }
+    .shape:last-child {
+      right: -30px;
+      bottom: -80px;
+    }
+  }
+
+  .loginForm {
+    height: 520px;
+    width: 31%;
+
+    padding: 50px 35px;
+  }
+
+  .loginTitle {
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,60 @@
+@import-normalize;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --light-background: #e1e3e8;
+  --light-secondary-background: #cfd5d9;
+  --light-main-text: #f1f2f4;
+  --light-secondary-text: #1b3d4d;
+  --light-helper-color: #a0302a;
+
+  --dark-background: #2c2e33;
+  --dark-secondary-background: #bed0dc;
+  --dark-main-text: #cdcbcb;
+  --dark-secondary-text: #db6d33;
+  --dark-helper-color: #a0302a;
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Ubuntu Mono", monospace;
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-theme="light"] {
+  background-color: var(--light-background);
+}
+
+body[data-theme="dark"] {
+  background-color: var(--dark-background);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+#root {
+  height: 100%;
+}

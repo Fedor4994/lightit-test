@@ -1,0 +1,16 @@
+.themeSwitcher {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 2px;
+
+  color: var(--header-icon-color);
+
+  &:hover {
+    color: var(--header-icon-hover);
+  }
+}

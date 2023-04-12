@@ -1,0 +1,23 @@
+.zoomContainer {
+  width: 100%;
+  cursor: zoom-in;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .zoomedImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    pointer-events: none;
+  }
+}

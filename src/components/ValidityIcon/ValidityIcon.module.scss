@@ -1,0 +1,15 @@
+@mixin validityIcon {
+  position: absolute;
+  right: 8px;
+  top: 24px;
+}
+
+.crossIcon {
+  @include validityIcon();
+  color: tomato;
+}
+
+.checkIcon {
+  @include validityIcon();
+  color: #049704;
+}
