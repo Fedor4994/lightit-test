@@ -1,5 +1,5 @@
 export type Product = {
-  id: number;
+  _id: { $oid: string };
   title: string;
   description: string;
   price: number;
@@ -8,6 +8,5 @@ export type Product = {
   stock: number;
   brand: string;
   category: string;
-  thumbnail: string;
   images: string[];
 };

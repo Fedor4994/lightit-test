@@ -4,23 +4,25 @@ import ZoomImage from "../../components/ZoomImage/ZoomImage";
 import Rate from "../../components/Rate/Rate";
 import starIcon from "./star.svg";
 import s from "./ProductDetailsPage.module.scss";
+import { Product } from "../../types/produts";
 
-const product = {
-  id: 5,
-  title: "Huawei P30",
-  description:
-    "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-  price: 499,
-  discountPercentage: 10.58,
-  rating: 4.09,
-  stock: 32,
-  brand: "Huawei",
-  category: "smartphones",
-  thumbnail: "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+const product: Product = {
+  _id: {
+    $oid: "6436f461929d441e311b47ed",
+  },
+  title: "Crystal chandelier maria theresa for 12 light",
+  description: "Crystal chandelier maria theresa for 12 light",
+  price: 47,
+  discountPercentage: 16,
+  rating: 4.74,
+  stock: 133,
+  brand: "YIOSI",
+  category: "lighting",
   images: [
-    "https://i.dummyjson.com/data/products/5/1.jpg",
-    "https://i.dummyjson.com/data/products/5/2.jpg",
-    "https://i.dummyjson.com/data/products/5/3.jpg",
+    "https://i.dummyjson.com/data/products/100/1.jpg",
+    "https://i.dummyjson.com/data/products/100/2.jpg",
+    "https://i.dummyjson.com/data/products/100/3.jpg",
+    "https://i.dummyjson.com/data/products/100/thumbnail.jpg",
   ],
 };
 
