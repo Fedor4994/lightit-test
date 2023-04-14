@@ -4,8 +4,13 @@ import { FaRegUser, FaCode } from "react-icons/fa";
 import Logo from "../../components/Logo/Logo";
 import ThemeSwitcher from "../../components/ThemeSwitcher/ThemeSwitcher";
 import s from "./Layout.module.scss";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/auth-selectors";
+import UserMenu from "../../components/UserMenu/UserMenu";
 
 const Layout = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <>
       {/* блок контент для того щоб прижати футер до низу сторінки */}
@@ -13,11 +18,15 @@ const Layout = () => {
         <header className={s.header}>
           <Logo />
 
-          <div className={s.loginIcon}>
-            <Link to="/login">
-              <FaRegUser className={s.infoIcon} size={18} />
-            </Link>
-          </div>
+          {isLoggedIn ? (
+            <UserMenu />
+          ) : (
+            <div className={s.loginIcon}>
+              <Link to="/login">
+                <FaRegUser className={s.infoIcon} size={18} />
+              </Link>
+            </div>
+          )}
         </header>
 
         {/* футер і хедер завжди однакові, а у мейн динамічно підставляются сторінки

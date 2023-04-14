@@ -12,7 +12,7 @@ export type AuthSlice = {
 
 const initialState: AuthSlice = {
   user: {
-    id: "",
+    _id: "",
     username: "",
     password: "",
   },
@@ -31,7 +31,7 @@ const authSlice = createSlice({
       .addCase(logOut.fulfilled, (state) => {
         state.user = {
           username: "",
-          id: "",
+          _id: "",
           password: "",
         };
         state.token = null;
@@ -42,7 +42,7 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
         state.user.username = payload?.user.username || "";
-        state.user.id = payload?.user.id || "";
+        state.user._id = payload?.user._id || "";
 
         state.isLoggedIn = true;
         state.isFetchingCurrentUser = false;
@@ -57,7 +57,7 @@ const authSlice = createSlice({
         isAnyOf(register.fulfilled, login.fulfilled),
         (state, { payload }) => {
           state.user.username = payload?.user.username || "";
-          state.user.id = payload?.user.id || "";
+          state.user._id = payload?.user._id || "";
 
           state.token = payload?.token || null;
           state.isLoggedIn = true;

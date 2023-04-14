@@ -1,9 +1,13 @@
-import { FormType } from "../../views/LoginPage/LoginPage";
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import s from "./AuthForm.module.scss";
+import { FormType } from "../../views/LoginPage/LoginPage";
 import ValidityIcon from "../ValidityIcon/ValidityIcon";
+import { useAppDispatch } from "../../redux/store";
+import { selectIsLoading } from "../../redux/auth/auth-selectors";
+import { login, register } from "../../redux/auth/auth-operations";
+import s from "./AuthForm.module.scss";
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -25,6 +29,9 @@ const AuthForm = ({
   formType: FormType;
   handleFormChange: (formType: FormType) => void;
 }) => {
+  const dispatch = useAppDispatch();
+  const isLoading = useSelector(selectIsLoading);
+
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: {
       username: "",
@@ -33,15 +40,28 @@ const AuthForm = ({
     validationSchema,
     onSubmit: (values, { resetForm }) => {
       formType === "Login"
-        ? console.log("Login operation", values)
-        : console.log("Register operation", values);
-
-      resetForm({
-        values: {
-          username: "",
-          password: "",
-        },
-      });
+        ? dispatch(login(values)).then((data) => {
+            if (data.meta.requestStatus === "rejected") {
+              alert("Incorrect email or password");
+              resetForm({
+                values: {
+                  username: values.username,
+                  password: "",
+                },
+              });
+            }
+          })
+        : dispatch(register(values)).then((data) => {
+            if (data.meta.requestStatus === "rejected") {
+              alert("A user with the same email already exists");
+              resetForm({
+                values: {
+                  username: "",
+                  password: "",
+                },
+              });
+            }
+          });
     },
   });
 
@@ -124,7 +144,9 @@ const AuthForm = ({
 
         <button
           disabled={
-            values.username === "" || Object.values(errors).length !== 0
+            values.username === "" ||
+            Object.values(errors).length !== 0 ||
+            isLoading
           }
           type="submit"
           className={s.loginButton}

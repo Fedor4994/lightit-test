@@ -50,6 +50,14 @@
   display: block;
 }
 
+.favoriteLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--default-background-color);
+}
+
 @media screen and (min-width: 480px) {
   .dropdownContent {
     div {

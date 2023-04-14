@@ -3,7 +3,7 @@ import axios from "axios";
 import { User } from "../../types/auth";
 import { AuthSlice } from "./authSlice";
 
-axios.defaults.baseURL = "https://typemania.fly.dev/api";
+axios.defaults.baseURL = "http://localhost:8080/api";
 
 //Ящко у сторі є токен, то зберегаємо його у хедерсах і робимо запити на сервер
 //інакше сетаємо цей хедер у пусту строку і користувач більше не авторизован
@@ -19,7 +19,7 @@ const token = {
 export const register = createAsyncThunk(
   "auth/register",
   // запит із даними для створення нового користувача: username, password
-  async (userData: Omit<User, "id">, { rejectWithValue }) => {
+  async (userData: Omit<User, "_id">, { rejectWithValue }) => {
     try {
       const { data } = await axios.post<{
         token: string | null;
@@ -39,7 +39,7 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk(
   "auth/login",
   // запит із даними для вхору до аккауну користувача: username, password
-  async (userData: Omit<User, "id">, { rejectWithValue }) => {
+  async (userData: Omit<User, "_id">, { rejectWithValue }) => {
     try {
       const { data } = await axios.post<{
         token: string | null;

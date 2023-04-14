@@ -13,6 +13,7 @@ const Rate = () => {
     <ul className={s.rateList}>
       {rateArray.map((rate) => (
         <button
+          key={rate}
           onMouseEnter={() => setHoverRating(rate)}
           onMouseLeave={() => setHoverRating(0)}
           className={s.star}
