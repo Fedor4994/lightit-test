@@ -1,4 +1,5 @@
 import { useRef } from "react";
+
 import s from "./ZoomImage.module.scss";
 
 const ZoomImage = ({ img }: { img: string }) => {

@@ -2,11 +2,12 @@ import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import { FormType } from "../../views/LoginPage/LoginPage";
-import ValidityIcon from "../ValidityIcon/ValidityIcon";
 import { useAppDispatch } from "../../redux/store";
 import { selectIsLoading } from "../../redux/auth/auth-selectors";
 import { login, register } from "../../redux/auth/auth-operations";
+
+import { FormType } from "../../views/LoginPage/LoginPage";
+import ValidityIcon from "../ValidityIcon/ValidityIcon";
 import s from "./AuthForm.module.scss";
 
 const validationSchema = yup.object().shape({

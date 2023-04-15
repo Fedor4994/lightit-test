@@ -1,17 +1,19 @@
-import { Routes, Route } from "react-router-dom";
-import Container from "./components/Container/Container";
-import Layout from "./views/Layout/Layout";
-import ProductsPage from "./views/ProductsPage/ProductsPage";
-import LoginPage from "./views/LoginPage/LoginPage";
-import ProductDetailsPage from "./views/ProductDetailsPage/ProductDetailsPage";
-import PublicRoute from "./components/PublicRoute";
-import PrivateRoute from "./components/PrivateRoute";
-import FavoritePage from "./views/FavoritePage/FavoritePage";
-import { useAppDispatch } from "./redux/store";
-import { useSelector } from "react-redux";
-import { selectIsFetchingUser } from "./redux/auth/auth-selectors";
 import { useEffect } from "react";
-import { getCurrentUser } from "./redux/auth/auth-operations";
+import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { useAppDispatch } from "../../redux/store";
+import { selectIsFetchingUser } from "../../redux/auth/auth-selectors";
+import { getCurrentUser } from "../../redux/auth/auth-operations";
+
+import PublicRoute from "../PublicRoute";
+import PrivateRoute from "../PrivateRoute";
+import Container from "../Container/Container";
+import Layout from "../../views/Layout/Layout";
+import ProductsPage from "../../views/ProductsPage/ProductsPage";
+import LoginPage from "../../views/LoginPage/LoginPage";
+import ProductDetailsPage from "../../views/ProductDetailsPage/ProductDetailsPage";
+import FavoritePage from "../../views/FavoritePage/FavoritePage";
 
 function App() {
   const dispatch = useAppDispatch();

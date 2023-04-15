@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { Product } from "../../types/produts";
 import s from "./ProductCard.module.scss";
 

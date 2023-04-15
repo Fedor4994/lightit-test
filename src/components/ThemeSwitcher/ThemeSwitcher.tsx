@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import s from "./ThemeSwitcher.module.scss";
 import { FaMoon, FaSun } from "react-icons/fa";
+
+import s from "./ThemeSwitcher.module.scss";
 
 export type Theme = "light" | "dark";
 

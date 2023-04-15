@@ -1,6 +1,7 @@
-import s from "./ProductsList.module.scss";
 import { Product } from "../../types/produts";
 import ProductCard from "../ProductCard/ProductCard";
+
+import s from "./ProductsList.module.scss";
 
 const ProductsList = ({ products }: { products: Product[] }) => {
   return (

@@ -1,4 +1,5 @@
 import ProductsList from "../../components/ProductsList/ProductsList";
+
 import s from "./ProductsPage.module.scss";
 
 import products from "./products.json";

@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
+
 import ZoomImage from "../../components/ZoomImage/ZoomImage";
 import Rate from "../../components/Rate/Rate";
+import { Product } from "../../types/produts";
+
 import starIcon from "./star.svg";
 import s from "./ProductDetailsPage.module.scss";
-import { Product } from "../../types/produts";
 
 const product: Product = {
   _id: {

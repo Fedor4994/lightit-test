@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaListUl, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+
 import { selectUser } from "../../redux/auth/auth-selectors";
 import { useAppDispatch } from "../../redux/store";
 import { logOut } from "../../redux/auth/auth-operations";
+
 import s from "./UserMenu.module.scss";
 
 const UserMenu = () => {

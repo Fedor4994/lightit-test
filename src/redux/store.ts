@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+
 import authReducer, { AuthReducer } from "./auth/authSlice";
 
 // конфіг для автоматичного заповнення поля token токентом з локалстора(редакс персист)

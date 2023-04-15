@@ -1,12 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { FaRegUser, FaCode } from "react-icons/fa";
 
 import Logo from "../../components/Logo/Logo";
 import ThemeSwitcher from "../../components/ThemeSwitcher/ThemeSwitcher";
-import s from "./Layout.module.scss";
-import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/auth-selectors";
 import UserMenu from "../../components/UserMenu/UserMenu";
+
+import s from "./Layout.module.scss";
 
 const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

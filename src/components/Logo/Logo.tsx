@@ -1,5 +1,6 @@
-import { FaStore } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { FaStore } from "react-icons/fa";
+
 import s from "./Logo.module.scss";
 
 const Logo = () => {

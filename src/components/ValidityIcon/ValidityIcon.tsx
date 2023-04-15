@@ -1,5 +1,6 @@
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
+
 import s from "./ValidityIcon.module.scss";
 
 const ValidityIcon = ({ isError }: { isError: boolean }) => {
