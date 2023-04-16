@@ -3,3 +3,8 @@ export type User = {
   username: string;
   password: string;
 };
+
+export type UserPublicInfo = {
+  _id: string;
+  username: string;
+};

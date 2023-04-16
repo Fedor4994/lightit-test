@@ -1,10 +1,10 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
-import { User } from "../../types/auth";
+import { UserPublicInfo } from "../../types/auth";
 import { getCurrentUser, login, logOut, register } from "./auth-operations";
 
 export type AuthSlice = {
-  user: User;
+  user: UserPublicInfo;
   token: string | null;
   isLoggedIn: boolean;
   isFetchingCurrentUser: boolean;
@@ -15,7 +15,6 @@ const initialState: AuthSlice = {
   user: {
     _id: "",
     username: "",
-    password: "",
   },
   token: null,
   isLoggedIn: false,
@@ -33,7 +32,6 @@ const authSlice = createSlice({
         state.user = {
           username: "",
           _id: "",
-          password: "",
         };
         state.token = null;
         state.isLoggedIn = false;
