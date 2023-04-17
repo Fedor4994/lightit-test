@@ -1,5 +1,7 @@
+import { SortType } from "./sortType";
+
 export type Product = {
-  _id: { $oid: string };
+  _id: string;
   title: string;
   description: string;
   price: number;
@@ -9,4 +11,23 @@ export type Product = {
   brand: string;
   category: string;
   images: string[];
+};
+
+export type ProductsQuery = {
+  page?: number;
+  limit?: number;
+  sort?: SortType;
+};
+
+export const initialProduct = {
+  _id: "",
+  title: "string",
+  description: "string",
+  price: 0,
+  discountPercentage: 0,
+  rating: 0,
+  stock: 0,
+  brand: "",
+  category: "",
+  images: [],
 };

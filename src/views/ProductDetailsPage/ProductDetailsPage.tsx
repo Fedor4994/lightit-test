@@ -3,45 +3,41 @@ import { AiFillStar } from "react-icons/ai";
 
 import ZoomImage from "../../components/ZoomImage/ZoomImage";
 import Rate from "../../components/Rate/Rate";
-import { Product } from "../../types/produts";
+import { Product, initialProduct } from "../../types/produts";
 
 import starIcon from "./star.svg";
 import s from "./ProductDetailsPage.module.scss";
-
-const product: Product = {
-  _id: {
-    $oid: "6436f461929d441e311b47ed",
-  },
-  title: "Crystal chandelier maria theresa for 12 light",
-  description: "Crystal chandelier maria theresa for 12 light",
-  price: 47,
-  discountPercentage: 16,
-  rating: 4.74,
-  stock: 133,
-  brand: "YIOSI",
-  category: "lighting",
-  images: [
-    "https://i.dummyjson.com/data/products/100/1.jpg",
-    "https://i.dummyjson.com/data/products/100/2.jpg",
-    "https://i.dummyjson.com/data/products/100/3.jpg",
-    "https://i.dummyjson.com/data/products/100/thumbnail.jpg",
-  ],
-};
+import { useEffect, useState } from "react";
+import { getProdutById } from "../../utils/getProducts";
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
+  const [product, setProduct] = useState<Product>(initialProduct);
+
+  useEffect(() => {
+    const getProduts = async () => {
+      try {
+        setProduct(await getProdutById(productId || ""));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getProduts();
+  }, [productId]);
 
   return (
     <div className={s.productDetailsPage}>
       <div className={s.imageWrapper}>
-        <ZoomImage img={product.images[2]} />
+        <ZoomImage img={product.images[0]} />
       </div>
       <div className={s.descriptionWrapper}>
         <div className={s.productDescriptoin}>
-          <h1 className={s.productTitle}>
-            {product.title} - {productId}
-          </h1>
-          <p>{product.title}</p>
+          <h1 className={s.productTitle}>{product.title}</h1>
+          <p>{product.description}</p>
+          <p>Brand - {product.brand}</p>
+          <p>Price: {product.price}$</p>
+          <p>Category: {product.category}</p>
         </div>
 
         <div className={s.ratingWrapper}>
@@ -51,7 +47,7 @@ const ProductDetailsPage = () => {
               <p className={s.ratingInfo}>
                 <span className={s.ratingInfo}>
                   <AiFillStar />
-                  4.3 - 15 votes
+                  {product.rating}
                 </span>
               </p>
             </div>

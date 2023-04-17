@@ -5,7 +5,7 @@ import s from "./ProductCard.module.scss";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <Link to={`/products/${product._id.$oid}`} className={s.productCard}>
+    <Link to={`/products/${product._id}`} className={s.productCard}>
       <img
         className={s.productCardImage}
         src={product.images[0]}

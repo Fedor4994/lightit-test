@@ -7,7 +7,7 @@ const ProductsList = ({ products }: { products: Product[] }) => {
   return (
     <div className={s.productsList}>
       {products.map((product) => (
-        <ProductCard key={product._id.$oid} product={product} />
+        <ProductCard key={product._id} product={product} />
       ))}
     </div>
   );
