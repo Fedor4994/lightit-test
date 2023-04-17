@@ -1,18 +1,18 @@
 import axios from "axios";
-import { ProductsQuery } from "../types/produts";
+import { Product, ProductsQuery } from "../types/produts";
 
-export const getAllProduts = async ({
+export const getAllProducts = async ({
   page = 1,
   limit = 10,
   sort = "rating-desc-rank",
 }: ProductsQuery) => {
-  const { data } = await axios.get(
+  const { data } = await axios.get<{ products: Product[]; total: number }>(
     `/products?page=${page}&limit=${limit}&sort=${sort}`
   );
   return data;
 };
 
-export const getProdutById = async (productId: string) => {
-  const { data } = await axios.get(`/products/${productId}`);
+export const getProductById = async (productId: string) => {
+  const { data } = await axios.get<Product>(`/products/${productId}`);
   return data;
 };

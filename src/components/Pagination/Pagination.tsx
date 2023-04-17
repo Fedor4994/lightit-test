@@ -1,13 +1,21 @@
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaAngleDoubleLeft,
+  FaAngleDoubleRight,
+  FaAngleLeft,
+  FaAngleRight,
+} from "react-icons/fa";
+
 import s from "./Pagination.module.scss";
 
 const Pagination = ({
   page,
+  increasePage,
   setPage,
-  itemsCount,
+  totalProductsCount,
 }: {
   page: number;
-  itemsCount: number;
+  totalProductsCount: number;
+  increasePage: (page: number) => void;
   setPage: (page: number) => void;
 }) => {
   const scrollToTop = () => {
@@ -16,6 +24,8 @@ const Pagination = ({
       behavior: "smooth",
     });
   };
+
+  const countOfFullPages = Number((totalProductsCount / 12).toFixed(0));
 
   return (
     <div className={s.pagination}>
@@ -35,20 +45,17 @@ const Pagination = ({
         }
         onClick={() => {
           scrollToTop();
-          setPage(-1);
-          localStorage.setItem("page", (page - 1).toString());
+          setPage(1);
+          localStorage.setItem("page", "1");
         }}
       >
-        <FaChevronLeft size={16} />
+        <FaAngleDoubleLeft size={20} />
       </button>
-
-      <div className={s.currentPage}>{page}</div>
-
       <button
         className={s.paginationButton}
-        disabled={itemsCount < 12}
+        disabled={page < 2}
         style={
-          itemsCount < 12
+          page < 2
             ? {
                 opacity: 0.5,
                 cursor: "default",
@@ -60,11 +67,59 @@ const Pagination = ({
         }
         onClick={() => {
           scrollToTop();
-          setPage(1);
+          increasePage(-1);
+          localStorage.setItem("page", (page - 1).toString());
+        }}
+      >
+        <FaAngleLeft size={20} />
+      </button>
+
+      <div className={s.currentPage}>{page}</div>
+
+      <button
+        className={s.paginationButton}
+        disabled={page > countOfFullPages}
+        style={
+          page > countOfFullPages
+            ? {
+                opacity: 0.5,
+                cursor: "default",
+              }
+            : {
+                opacity: 1,
+                cursor: "pointer",
+              }
+        }
+        onClick={() => {
+          scrollToTop();
+          increasePage(1);
           localStorage.setItem("page", (page + 1).toString());
         }}
       >
-        <FaChevronRight size={16} />
+        <FaAngleRight size={20} />
+      </button>
+
+      <button
+        className={s.paginationButton}
+        disabled={page > countOfFullPages}
+        style={
+          page > countOfFullPages
+            ? {
+                opacity: 0.5,
+                cursor: "default",
+              }
+            : {
+                opacity: 1,
+                cursor: "pointer",
+              }
+        }
+        onClick={() => {
+          scrollToTop();
+          setPage(countOfFullPages + 1);
+          localStorage.setItem("page", (countOfFullPages + 1).toString());
+        }}
+      >
+        <FaAngleDoubleRight size={20} />
       </button>
     </div>
   );

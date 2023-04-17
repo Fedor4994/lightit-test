@@ -1,14 +1,14 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 
 import ZoomImage from "../../components/ZoomImage/ZoomImage";
 import Rate from "../../components/Rate/Rate";
 import { Product, initialProduct } from "../../types/produts";
+import { getProductById } from "../../utils/getProducts";
 
 import starIcon from "./star.svg";
 import s from "./ProductDetailsPage.module.scss";
-import { useEffect, useState } from "react";
-import { getProdutById } from "../../utils/getProducts";
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -17,7 +17,7 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     const getProduts = async () => {
       try {
-        setProduct(await getProdutById(productId || ""));
+        setProduct(await getProductById(productId || ""));
       } catch (error) {
         console.log(error);
       }
