@@ -11,17 +11,18 @@ import {
 } from "../../utils/getProducts";
 
 import s from "./ProductsPage.module.scss";
+import { convertSortType } from "../../utils/convertSortType";
 
 const ProductsPage = () => {
   const savedPage = localStorage.getItem("page");
-  const savedSort = localStorage.getItem("sort") as SortType;
+  const savedSort = localStorage.getItem("sort");
   const savedCategorie = localStorage.getItem("categorie");
 
   const [products, setProducts] = useState<Product[]>([]);
   const [totalProductsCount, setTotalProductsCount] = useState(0);
   const [page, setPage] = useState(savedPage ? Number(savedPage) : 1);
   const [sortType, setSortType] = useState<SortType>(
-    savedSort ? savedSort : "rating-desc-rank"
+    savedSort ? convertSortType(savedSort) : "rating-desc-rank"
   );
   const [categorie, setCategorie] = useState(
     savedCategorie ? savedCategorie : "all products"
@@ -73,7 +74,6 @@ const ProductsPage = () => {
   return (
     <div className={s.productsPage}>
       <Filter
-        sortType={sortType}
         setSortType={(sortType) => {
           setSortType(sortType);
           setPage(1);

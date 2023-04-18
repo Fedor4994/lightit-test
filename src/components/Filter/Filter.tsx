@@ -6,26 +6,29 @@ import { SortType } from "../../types/sortType";
 import s from "./Filter.module.scss";
 import { useEffect, useState } from "react";
 import { getAllCategories } from "../../utils/getCategories";
+import { convertSortType } from "../../utils/convertSortType";
 
 const Filter = ({
-  sortType,
   categorie,
   setSortType,
   setCategorie,
 }: {
-  sortType: SortType;
   categorie: string;
   setSortType: (type: SortType) => void;
   setCategorie: (categorie: string) => void;
 }) => {
-  const sortArray: SortType[] = [
-    "price-ask-rank",
-    "price-desc-rank",
-    "rating-ask-rank",
-    "rating-desc-rank",
+  const sortTitles = [
+    "Rating: Hight to Low",
+    "Rating: Low to High",
+    "Price: High to Low",
+    "Price: Low to High",
   ];
+  const savedSort = localStorage.getItem("sort");
 
   const [categories, setCategories] = useState<string[]>([]);
+  const [sortTitle, setSortTitle] = useState(
+    savedSort ? savedSort : "Rating: Hight to Low"
+  );
 
   useEffect(() => {
     const getCategories = async () => {
@@ -59,12 +62,14 @@ const Filter = ({
         controlClassName={s.dropdownInput}
         menuClassName={s.dropdown}
         arrowClassName={s.arrow}
-        options={sortArray}
+        options={sortTitles}
         onChange={(option) => {
-          setSortType(option.value as SortType);
+          setSortTitle(option.value as SortType);
           localStorage.setItem("sort", option.value);
+
+          setSortType(convertSortType(option.value));
         }}
-        value={sortType}
+        value={sortTitle}
         placeholder="Select an sort type"
       />
     </div>

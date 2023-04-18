@@ -1,6 +1,60 @@
 .filterWrapper {
-  width: 98%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.dropdownInput {
+  color: var(--logo-text-color);
+  cursor: pointer;
+  font-size: 10px;
+  padding-left: 7px;
+  padding-right: 25px;
+  background-color: transparent;
+}
+
+.dropdown {
+  border: none;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  div {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .filterWrapper {
+    width: 98%;
+  }
+
+  .dropdownInput {
+    font-size: 14px;
+    padding-left: 7px;
+    padding-right: 40px;
+  }
+
+  .arrow {
+    margin-top: 4px;
+  }
+
+  .dropdown {
+    div {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dropdownInput {
+    font-size: 18px;
+    padding-right: 56px;
+  }
+
+  .dropdown {
+    div {
+      font-size: 18px;
+    }
+  }
 }
