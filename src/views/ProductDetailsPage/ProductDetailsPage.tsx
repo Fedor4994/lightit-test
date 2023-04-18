@@ -11,6 +11,7 @@ import { getProductById } from "../../utils/getProducts";
 
 import starIcon from "./star.svg";
 import s from "./ProductDetailsPage.module.scss";
+import StarsAverage from "../../components/StarsAverage/StarsAverage";
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -50,22 +51,32 @@ const ProductDetailsPage = () => {
       <div className={s.descriptionWrapper}>
         <div className={s.productDescriptoin}>
           <h1 className={s.productTitle}>{product.title}</h1>
-          <p>{product.description}</p>
-          <p>Brand - {product.brand}</p>
-          <p>Price: {product.price}$</p>
-          <p>Category: {product.category}</p>
+          <div className={s.ratingInfo}>
+            <StarsAverage rating={product.rating} /> - average
+          </div>
+
+          <div className={s.divide}></div>
+
+          <div className={s.characteristicsWrapper}>
+            <b>Price: {product.price}$</b>
+            <p>Brand name: {product.brand}</p>
+            <p className={s.category}>
+              Category: <div className={s.categoryName}>{product.category}</div>
+            </p>
+          </div>
+
+          <div className={s.divide}></div>
+
+          <h3 className={s.descriptionText}>About:</h3>
+          <p className={s.descriptionText}>{product.description}</p>
+
+          <div className={s.divide}></div>
         </div>
 
         <div className={s.ratingWrapper}>
           <div className={s.ratingTitleWrapper}>
             <div>
-              <h2 className={s.ratingTitle}>Leave a review</h2>
-              <p className={s.ratingInfo}>
-                <span className={s.ratingInfo}>
-                  <AiFillStar />
-                  {product.rating}
-                </span>
-              </p>
+              <h2 className={s.ratingTitle}>Leave a review:</h2>
             </div>
 
             <img className={s.ratingImage} src={starIcon} alt="star" />

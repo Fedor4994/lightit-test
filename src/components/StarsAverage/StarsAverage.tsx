@@ -6,7 +6,7 @@ import s from "./StarsAverage.module.scss";
 const StarsAverage = ({ rating }: { rating: number }) => {
   return (
     <div className={s.starsAverageWrapper}>
-      <div>
+      <div className={s.starsList}>
         {getStarsByAverageRating(rating).map((star, index) => {
           if (star === 1) {
             return <BsStarFill key={index} />;
