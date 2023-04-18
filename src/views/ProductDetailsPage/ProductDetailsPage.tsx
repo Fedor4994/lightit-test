@@ -46,6 +46,7 @@ const ProductDetailsPage = () => {
           ))}
         </Carousel>
       </div>
+
       <div className={s.descriptionWrapper}>
         <div className={s.productDescriptoin}>
           <h1 className={s.productTitle}>{product.title}</h1>
