@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import ZoomImage from "../../components/ZoomImage/ZoomImage";
 import Rate from "../../components/Rate/Rate";
@@ -29,7 +31,20 @@ const ProductDetailsPage = () => {
   return (
     <div className={s.productDetailsPage}>
       <div className={s.imageWrapper}>
-        <ZoomImage img={product.images[0]} />
+        <Carousel
+          renderThumbs={(children) => {
+            return product.images.map((img, index) => (
+              <img key={index} src={img} alt="product thumb" />
+            ));
+          }}
+          dynamicHeight={true}
+          showArrows={false}
+          showIndicators={false}
+        >
+          {product.images.map((src, index) => (
+            <ZoomImage key={index} img={src} />
+          ))}
+        </Carousel>
       </div>
       <div className={s.descriptionWrapper}>
         <div className={s.productDescriptoin}>
