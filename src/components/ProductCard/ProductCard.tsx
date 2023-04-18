@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import { Product } from "../../types/produts";
 import s from "./ProductCard.module.scss";
+import StarsAverage from "../StarsAverage/StarsAverage";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
@@ -11,7 +12,12 @@ const ProductCard = ({ product }: { product: Product }) => {
         src={product.images[0]}
         alt="product"
       />
-      <h3>{product.title}</h3>
+      <h3 className={s.cardTitle}>{product.title}</h3>
+      <div className={s.decriptionWrapper}>
+        <StarsAverage rating={product.rating} />
+
+        <strong className={s.price}>{product.price}$</strong>
+      </div>
     </Link>
   );
 };
