@@ -5,8 +5,13 @@ import s from "./Rate.module.scss";
 
 const rateArray = [1, 2, 3, 4, 5];
 
-const Rate = () => {
-  const [rating, setRating] = useState(0);
+const Rate = ({
+  rating,
+  setRating,
+}: {
+  rating: number;
+  setRating: (rating: number) => void;
+}) => {
   const [hoverRating, setHoverRating] = useState(0);
 
   return (

@@ -3,12 +3,16 @@
     --card-background-color: var(--light-main-text);
     --card-text-color: var(--light-secondary-text);
     --box-shadow-color: rgba(0, 0, 0, 0.5);
+
+    --global-background-color: var(--light-background);
   }
 
   body[data-theme="dark"] {
     --card-background-color: var(--dark-main-text);
     --card-text-color: var(--dark-background);
     --box-shadow-color: rgba(171, 172, 180, 0.5);
+
+    --global-background-color: var(--dark-background);
   }
 }
 
@@ -56,6 +60,12 @@
   margin-bottom: 5px;
 
   justify-content: space-between;
+}
+
+.starsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .price {

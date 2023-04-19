@@ -17,7 +17,6 @@ const StarsAverage = ({ rating }: { rating: number }) => {
           }
         })}
       </div>
-      <p>{rating}</p>
     </div>
   );
 };

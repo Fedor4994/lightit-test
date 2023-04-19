@@ -14,7 +14,10 @@ const ProductCard = ({ product }: { product: Product }) => {
       />
       <h3 className={s.cardTitle}>{product.title}</h3>
       <div className={s.decriptionWrapper}>
-        <StarsAverage rating={product.rating} />
+        <div className={s.starsWrapper}>
+          <StarsAverage rating={product.rating} />
+          <p>{product.rating}</p>
+        </div>
 
         <strong className={s.price}>{product.price}$</strong>
       </div>

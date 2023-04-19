@@ -1,0 +1,104 @@
+@mixin defaultFlex {
+  display: flex;
+  align-items: center;
+}
+
+.reviewsWrapper {
+  margin-top: 20px;
+  color: var(--logo-text-color);
+}
+
+.reviewCard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.mainData {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.username {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.reviewControllButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--logo-text-color);
+  border: none;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+}
+
+.editModal {
+  display: flex;
+  border-radius: 10px;
+  padding: 50px 20px;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  background-color: var(--global-background-color);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.commentArea {
+  width: 100%;
+  height: 70px;
+  padding: 6px 5px;
+  border: 2px solid var(--logo-text-color);
+  color: var(--logo-text-color);
+  border-radius: 4px;
+  background-color: transparent;
+  font-size: 16px;
+  resize: none;
+}
+
+.modalButtonsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modalButton {
+  cursor: pointer;
+  background-color: var(--logo-text-color);
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  color: var(--global-background-color);
+
+  transition: 200ms scale ease;
+
+  &:hover {
+    scale: 1.05;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .editModal {
+    padding: 60px 40px;
+    gap: 15px;
+  }
+}
