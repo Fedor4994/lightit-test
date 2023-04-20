@@ -14,7 +14,7 @@ import Layout from "../../views/Layout/Layout";
 import ProductsPage from "../../views/ProductsPage/ProductsPage";
 import LoginPage from "../../views/LoginPage/LoginPage";
 import ProductDetailsPage from "../../views/ProductDetailsPage/ProductDetailsPage";
-import FavoritePage from "../../views/FavoritePage/FavoritePage";
+import ReviewsPage from "../../views/FavoritePage/ReviewsPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -34,9 +34,9 @@ function App() {
           <Route path="/products/:productId" element={<ProductDetailsPage />} />
 
           <Route
-            path="/favorite"
+            path="/reviews"
             element={
-              <PrivateRoute component={<FavoritePage />} redirectTo="/login" />
+              <PrivateRoute component={<ReviewsPage />} redirectTo="/login" />
             }
           />
 

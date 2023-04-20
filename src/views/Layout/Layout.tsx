@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaRegUser, FaCode } from "react-icons/fa";
+import { FaRegUser, FaCode, FaListUl } from "react-icons/fa";
 
 import Logo from "../../components/Logo/Logo";
 import ThemeSwitcher from "../../components/ThemeSwitcher/ThemeSwitcher";
@@ -20,7 +20,14 @@ const Layout = () => {
           <Logo />
 
           {isLoggedIn ? (
-            <UserMenu />
+            <div className={s.headerMenu}>
+              <Link className={s.headerMenuLink} to="/reviews">
+                <FaListUl size={16} />
+                My reviews
+              </Link>
+
+              <UserMenu />
+            </div>
           ) : (
             <div className={s.loginIcon}>
               <Link to="/login">

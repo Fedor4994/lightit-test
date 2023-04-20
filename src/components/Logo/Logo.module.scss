@@ -24,13 +24,7 @@
 
 .logoText {
   font-family: "Lexend Deca", sans-serif;
-  font-size: 18px;
+  font-size: 30px;
   color: var(--logo-text-color);
   user-select: none;
-}
-
-@media screen and (min-width: 480px) {
-  .logoText {
-    font-size: 30px;
-  }
 }

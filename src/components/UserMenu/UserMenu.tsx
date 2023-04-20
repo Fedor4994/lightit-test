@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { FaListUl, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 
 import { selectUser } from "../../redux/auth/auth-selectors";
 import { useAppDispatch } from "../../redux/store";
@@ -13,23 +14,33 @@ const UserMenu = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className={s.dropdown}>
-      <button className={s.dropButton}>
-        <FaUserAlt className={s.userIcon} size={18} />
+    <div className={s.usermenu}>
+      <div className={s.usermenuItem}>
+        <FaUserAlt size={18} />
         <span>{username}</span>
-      </button>
-      <div className={s.dropdownContent}>
-        <Link className={s.favoriteLink} to="/favorite">
-          <FaListUl size={16} />
-          Favorite
-        </Link>
+
         <div
-          onClick={() => {
-            dispatch(logOut());
-          }}
+          className={s.logout}
+          onClick={() =>
+            confirmAlert({
+              title: "Confirm to logout",
+              message: "Are you sure to do this?",
+              buttons: [
+                {
+                  label: "Yes",
+                  onClick: () => {
+                    dispatch(logOut());
+                  },
+                },
+                {
+                  label: "No",
+                  onClick: () => {},
+                },
+              ],
+            })
+          }
         >
           <FaSignOutAlt size={16} />
-          Log out
         </div>
       </div>
     </div>

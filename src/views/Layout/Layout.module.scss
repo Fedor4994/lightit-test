@@ -19,9 +19,23 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.headerMenu {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.headerMenuLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--logo-text-color);
 }
 
 .infoIcon {
@@ -56,5 +70,13 @@
 
   &:hover {
     color: var(--header-icon-hover);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0;
   }
 }

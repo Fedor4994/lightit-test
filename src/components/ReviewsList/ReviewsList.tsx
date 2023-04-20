@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaEdit, FaTrash, FaUserAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
@@ -10,7 +11,6 @@ import StarsAverage from "../StarsAverage/StarsAverage";
 import Rate from "../Rate/Rate";
 
 import s from "./ReviewsList.module.scss";
-import { toast } from "react-hot-toast";
 
 const ReviewsList = ({
   reviews,
