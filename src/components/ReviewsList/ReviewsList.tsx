@@ -10,6 +10,7 @@ import StarsAverage from "../StarsAverage/StarsAverage";
 import Rate from "../Rate/Rate";
 
 import s from "./ReviewsList.module.scss";
+import { toast } from "react-hot-toast";
 
 const ReviewsList = ({
   reviews,
@@ -62,7 +63,7 @@ const ReviewsList = ({
                               label: "Yes",
                               onClick: () => {
                                 onDelete();
-                                alert("Review deleted successfully");
+                                toast.success("Review deleted successfully");
                               },
                             },
                             {
@@ -123,7 +124,7 @@ const ReviewsList = ({
                 onClick={() => {
                   onEdit({ rating: editedRating, text: editedMessage });
                   setIsModalOpen(false);
-                  alert("review is edited successfully");
+                  toast.success("Review is edited successfully");
                 }}
               >
                 Edit

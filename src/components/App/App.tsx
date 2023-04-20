@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Toaster } from "react-hot-toast";
 
 import { useAppDispatch } from "../../redux/store";
 import { selectIsFetchingUser } from "../../redux/auth/auth-selectors";
@@ -45,6 +46,7 @@ function App() {
           />
         </Route>
       </Routes>
+      <Toaster />
     </Container>
   );
 }

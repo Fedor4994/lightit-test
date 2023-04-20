@@ -9,6 +9,7 @@ import { login, register } from "../../redux/auth/auth-operations";
 import { FormType } from "../../views/LoginPage/LoginPage";
 import ValidityIcon from "../ValidityIcon/ValidityIcon";
 import s from "./AuthForm.module.scss";
+import { toast } from "react-hot-toast";
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -43,7 +44,7 @@ const AuthForm = ({
       formType === "Login"
         ? dispatch(login(values)).then((data) => {
             if (data.meta.requestStatus === "rejected") {
-              alert("Incorrect email or password");
+              toast.error("Incorrect username or password");
               resetForm({
                 values: {
                   username: values.username,
@@ -54,7 +55,7 @@ const AuthForm = ({
           })
         : dispatch(register(values)).then((data) => {
             if (data.meta.requestStatus === "rejected") {
-              alert("A user with the same email already exists");
+              toast.error("A user with the same username already exists");
               resetForm({
                 values: {
                   username: "",

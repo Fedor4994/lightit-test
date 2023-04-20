@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import Rate from "../Rate/Rate";
-import s from "./ReviewSection.module.scss";
-import starIcon from "./star.svg";
-import { Review } from "../../types/review";
+import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
+
+import Rate from "../Rate/Rate";
+import { Review } from "../../types/review";
 import { selectUser } from "../../redux/auth/auth-selectors";
+
+import starIcon from "./star.svg";
+import s from "./ReviewSection.module.scss";
 
 const ReviewSection = ({
   productId,
@@ -21,7 +24,7 @@ const ReviewSection = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    alert("Your review has been sent successfully");
+    toast.success("Your review has been sent successfully");
     addReview({
       text: reviewText,
       rating,
