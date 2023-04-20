@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
 import { SortType } from "../../types/sortType";
+import { getAllCategories } from "../../http/сategorieService";
+import { convertSortType } from "../../utils/convertSortType";
 
 import s from "./Filter.module.scss";
-import { useEffect, useState } from "react";
-import { getAllCategories } from "../../utils/getCategories";
-import { convertSortType } from "../../utils/convertSortType";
 
 const Filter = ({
   categorie,

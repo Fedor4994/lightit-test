@@ -4,8 +4,14 @@ import { Link, useParams } from "react-router-dom";
 
 import { Review } from "../../types/review";
 import { Product, initialProduct } from "../../types/produts";
-import { getProductById } from "../../utils/getProducts";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/auth-selectors";
+import { getProductById } from "../../http/productService";
+import {
+  addReviewForProduct,
+  deleteReviewForProduct,
+  editReviewForProduct,
+  getReviewsByProductId,
+} from "../../http/reviewService";
 
 import StarsAverage from "../../components/StarsAverage/StarsAverage";
 import ReviewSection from "../../components/ReviewSection/ReviewSection";
@@ -24,6 +30,7 @@ const ProductDetailsPage = () => {
   const [product, setProduct] = useState<Product>(initialProduct);
   const [reviews, setReviews] = useState<Review[]>([]);
 
+  //получение деталей о продукте по его айдишнику
   useEffect(() => {
     const getProduts = async () => {
       try {
@@ -36,13 +43,28 @@ const ProductDetailsPage = () => {
     getProduts();
   }, [productId]);
 
+  //получение отзывов о продукте
   useEffect(() => {
-    //find review of current user
+    const getReviews = async () => {
+      try {
+        setReviews(await getReviewsByProductId(productId || ""));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getReviews();
+  }, [productId]);
+
+  //перемещает отзыв текущего юзера на первую позицию, если он есть
+  //показывает/скрывает форму добавления отзыва
+  useEffect(() => {
+    //ищет отзыв текущего юзера
     const index = reviews.findIndex(
       (review) => review.userId === currentUser._id
     );
 
-    //move current user's reveiw on the first position
+    //перемещает отзыв на первую позицию, если он был найден
     if (index !== -1) {
       setIsReviewFormShown(false);
 
@@ -58,25 +80,52 @@ const ProductDetailsPage = () => {
     }
   }, [currentUser._id, reviews]);
 
-  const editReview = (newReviewInfo: Pick<Review, "rating" | "text">) => {
-    const { rating, text } = newReviewInfo;
+  const addReview = async (review: Review) => {
+    try {
+      const data = await addReviewForProduct(review, productId || "");
 
-    const newReviews = reviews.map((review) => {
-      if (review.userId === currentUser._id) {
-        review.text = text;
-        review.rating = rating;
-      }
-      return review;
-    });
+      setProduct((prev) => ({ ...prev, rating: data.rating }));
 
-    setReviews(newReviews);
+      setReviews((prev) => [review, ...prev]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const deleteReview = () => {
-    const newReviews = reviews.filter(
-      (review) => review.userId !== currentUser._id
-    );
-    setReviews(newReviews);
+  const editReview = async (newReviewInfo: Pick<Review, "rating" | "text">) => {
+    const { rating, text } = newReviewInfo;
+    try {
+      const data = await editReviewForProduct(newReviewInfo, productId || "");
+
+      setProduct((prev) => ({ ...prev, rating: data.rating }));
+
+      const newReviews = reviews.map((review) => {
+        if (review.userId === currentUser._id) {
+          review.text = text;
+          review.rating = rating;
+        }
+        return review;
+      });
+
+      setReviews(newReviews);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteReview = async () => {
+    try {
+      const data = await deleteReviewForProduct(productId || "");
+
+      setProduct((prev) => ({ ...prev, rating: data.rating }));
+
+      const newReviews = reviews.filter(
+        (review) => review.userId !== currentUser._id
+      );
+      setReviews(newReviews);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -112,12 +161,7 @@ const ProductDetailsPage = () => {
 
         {isLoggedIn ? (
           isReviewFormShown ? (
-            <ReviewSection
-              addReview={(review) => {
-                setReviews((prev) => [review, ...prev]);
-              }}
-              productId={productId || ""}
-            />
+            <ReviewSection addReview={addReview} productId={productId || ""} />
           ) : (
             <p className={s.descriptionText}>
               If your opinion changes, you can edit or delete your review.

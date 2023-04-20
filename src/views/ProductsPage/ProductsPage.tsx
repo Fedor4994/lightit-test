@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 import ProductsList from "../../components/ProductsList/ProductsList";
 import Pagination from "../../components/Pagination/Pagination";
 import Filter from "../../components/Filter/Filter";
-import { Product } from "../../types/produts";
-import { SortType } from "../../types/sortType";
+
+import { convertSortType } from "../../utils/convertSortType";
 import {
   getAllProducts,
   getAllProductsByCategorie,
-} from "../../utils/getProducts";
+} from "../../http/productService";
+import { Product } from "../../types/produts";
+import { SortType } from "../../types/sortType";
 
 import s from "./ProductsPage.module.scss";
-import { convertSortType } from "../../utils/convertSortType";
 
 const ProductsPage = () => {
   const savedPage = localStorage.getItem("page");
