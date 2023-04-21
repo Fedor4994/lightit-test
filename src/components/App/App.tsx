@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
 
@@ -7,8 +7,8 @@ import { useAppDispatch } from "../../redux/store";
 import { selectIsFetchingUser } from "../../redux/auth/auth-selectors";
 import { getCurrentUser } from "../../redux/auth/auth-operations";
 
-import PublicRoute from "../PublicRoute";
-import PrivateRoute from "../PrivateRoute";
+import PublicRoute from "../../HOCs/PublicRoute";
+import PrivateRoute from "../../HOCs/PrivateRoute";
 import Container from "../Container/Container";
 import Layout from "../../views/Layout/Layout";
 import ProductsPage from "../../views/ProductsPage/ProductsPage";
@@ -43,6 +43,11 @@ function App() {
             element={<PublicRoute component={<LoginPage />} redirectTo="/" />}
           />
         </Route>
+
+        <Route
+          path="*"
+          element={<PublicRoute component={<Navigate to="/"></Navigate>} />}
+        ></Route>
       </Routes>
       <Toaster />
     </Container>
