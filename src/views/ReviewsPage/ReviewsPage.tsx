@@ -6,7 +6,7 @@ import StarsAverage from "../../components/StarsAverage/StarsAverage";
 import { Review } from "../../types/review";
 import { getUserReviews } from "../../http/reviewService";
 
-import emptyImage from "./reviews-empty.svg";
+import emptyImage from "../../assets/reviews-empty.svg";
 import s from "./ReviewsPage.module.scss";
 
 const ReviewsPage = () => {

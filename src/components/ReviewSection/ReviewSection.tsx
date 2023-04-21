@@ -6,7 +6,7 @@ import Rate from "../Rate/Rate";
 import { Review } from "../../types/review";
 import { selectUser } from "../../redux/auth/auth-selectors";
 
-import starIcon from "./star.svg";
+import starIcon from "../../assets/star.svg";
 import s from "./ReviewSection.module.scss";
 
 const ReviewSection = ({
