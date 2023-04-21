@@ -103,6 +103,7 @@ const ProductDetailsPage = () => {
         if (review.userId === currentUser._id) {
           review.text = text;
           review.rating = rating;
+          review.isEdited = true;
         }
         return review;
       });

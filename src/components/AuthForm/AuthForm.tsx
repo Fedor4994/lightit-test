@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
+import { toast } from "react-hot-toast";
 import * as yup from "yup";
 
 import { useAppDispatch } from "../../redux/store";
@@ -9,7 +10,6 @@ import { login, register } from "../../redux/auth/auth-operations";
 import { FormType } from "../../views/LoginPage/LoginPage";
 import ValidityIcon from "../ValidityIcon/ValidityIcon";
 import s from "./AuthForm.module.scss";
-import { toast } from "react-hot-toast";
 
 const validationSchema = yup.object().shape({
   username: yup

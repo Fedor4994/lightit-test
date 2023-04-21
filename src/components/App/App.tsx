@@ -24,9 +24,7 @@ function App() {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
-  return isFetchingUser ? (
-    <h1>LOADING...</h1>
-  ) : (
+  return isFetchingUser ? null : (
     <Container>
       <Routes>
         <Route path="/" element={<Layout />}>

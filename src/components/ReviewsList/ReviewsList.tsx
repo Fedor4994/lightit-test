@@ -78,6 +78,9 @@ const ReviewsList = ({
                     </button>
                   </>
                 )}
+                {review.isEdited && (
+                  <span className={s.isEdited}>(edited)</span>
+                )}
               </p>
 
               <div className={s.mainData}>

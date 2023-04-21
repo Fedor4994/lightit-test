@@ -3,6 +3,7 @@ export type Review = {
   rating: number;
   username: string;
   userId: string;
+  isEdited?: boolean;
   productId: string;
   createdAt: string;
 };
