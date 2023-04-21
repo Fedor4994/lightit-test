@@ -4,7 +4,8 @@ import axios from "axios";
 import { User } from "../../types/auth";
 import { AuthSlice } from "./authSlice";
 
-axios.defaults.baseURL = "http://localhost:8080/api";
+// axios.defaults.baseURL = "http://localhost:8080/api";
+axios.defaults.baseURL = "https://stuffstore.fly.dev/api";
 
 //Ящко у сторі є токен, то зберегаємо його у хедерсах і робимо запити на сервер
 //інакше сетаємо цей хедер у пусту строку і користувач більше не авторизован
