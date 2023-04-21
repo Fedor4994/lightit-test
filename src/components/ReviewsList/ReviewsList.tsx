@@ -108,6 +108,7 @@ const ReviewsList = ({
               value={editedMessage}
               className={s.commentArea}
               placeholder="Leave a comment: (optional)"
+              maxLength={50}
             ></textarea>
 
             <Rate rating={editedRating} setRating={setEditedRating} />

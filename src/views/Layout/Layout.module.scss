@@ -36,6 +36,10 @@
   align-items: center;
   gap: 10px;
   color: var(--logo-text-color);
+
+  &:hover {
+    color: var(--header-icon-hover);
+  }
 }
 
 .infoIcon {

@@ -14,7 +14,7 @@ import Layout from "../../views/Layout/Layout";
 import ProductsPage from "../../views/ProductsPage/ProductsPage";
 import LoginPage from "../../views/LoginPage/LoginPage";
 import ProductDetailsPage from "../../views/ProductDetailsPage/ProductDetailsPage";
-import ReviewsPage from "../../views/FavoritePage/ReviewsPage";
+import ReviewsPage from "../../views/ReviewsPage/ReviewsPage";
 
 function App() {
   const dispatch = useAppDispatch();

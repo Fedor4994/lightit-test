@@ -17,4 +17,8 @@
 .logout {
   margin-top: 5px;
   cursor: pointer;
+
+  &:hover {
+    color: var(--header-icon-hover);
+  }
 }

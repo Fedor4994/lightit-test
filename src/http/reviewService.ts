@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Review } from "../types/review";
+import { Product } from "../types/produts";
 
 export const getReviewsByProductId = async (productId: string) => {
   const { data } = await axios.get<Review[]>(`/reviews/${productId}`);
@@ -47,5 +48,12 @@ export const deleteReviewForProduct = async (productId: string) => {
     rating: number;
   }>(`/reviews/${productId}`);
 
+  return data;
+};
+
+export const getUserReviews = async () => {
+  const { data } = await axios.get<{ review: Review; product: Product }[]>(
+    `/reviews`
+  );
   return data;
 };

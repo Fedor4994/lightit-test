@@ -52,6 +52,7 @@ const ReviewSection = ({
           value={reviewText}
           className={s.commentArea}
           placeholder="Leave a comment: (optional)"
+          maxLength={50}
         ></textarea>
         <button className={s.submitButton} disabled={!rating} type="submit">
           Send
