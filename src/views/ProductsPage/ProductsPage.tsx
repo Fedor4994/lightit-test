@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ProductsList from "../../components/ProductsList/ProductsList";
 import Pagination from "../../components/Pagination/Pagination";
 import Filter from "../../components/Filter/Filter";
+import { ProductsPageLoader } from "../../components/ProductsPageLoader/ProductsPageLoader";
 
 import { convertSortType } from "../../utils/convertSortType";
 import {
@@ -28,16 +29,19 @@ const ProductsPage = () => {
   const [categorie, setCategorie] = useState(
     savedCategorie ? savedCategorie : "all products"
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getProduts = async () => {
       try {
+        setIsLoading(true);
         const { products, total } = await getAllProducts({
           limit: 12,
           page,
           sort: sortType,
         });
         setProducts(products);
+        setIsLoading(false);
         setTotalProductsCount(total);
       } catch (error) {
         console.log(error);
@@ -72,7 +76,9 @@ const ProductsPage = () => {
     setPage((prev) => prev + nextPage);
   };
 
-  return (
+  return isLoading && page === 1 ? (
+    <ProductsPageLoader />
+  ) : (
     <div className={s.productsPage}>
       <Filter
         setSortType={(sortType) => {

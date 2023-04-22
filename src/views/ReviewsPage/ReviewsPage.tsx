@@ -8,17 +8,21 @@ import { getUserReviews } from "../../http/reviewService";
 
 import emptyImage from "../../assets/reviews-empty.svg";
 import s from "./ReviewsPage.module.scss";
+import { ReviewsPageLoader } from "../../components/ReviewsPageLoader/ReviewsPageLoader";
 
 const ReviewsPage = () => {
   const [reviewsItems, setReviewsItems] = useState<
     { review: Review; product: Product }[]
   >([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   //получение отзывов пользователя
   useEffect(() => {
     const getReviews = async () => {
       try {
+        setIsLoading(true);
         setReviewsItems(await getUserReviews());
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -27,7 +31,9 @@ const ReviewsPage = () => {
     getReviews();
   }, []);
 
-  return reviewsItems.length === 0 ? (
+  return isLoading ? (
+    <ReviewsPageLoader />
+  ) : reviewsItems.length === 0 ? (
     <div className={s.emptyWrapper}>
       <h1 className={s.emptyTitle}>You haven't left any product reviews yet</h1>
       <img src={emptyImage} alt="no reviews" />

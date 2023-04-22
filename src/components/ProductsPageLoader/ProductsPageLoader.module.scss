@@ -1,0 +1,23 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.loaderHeader {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
+  width: 98%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

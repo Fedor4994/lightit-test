@@ -51,6 +51,12 @@
   gap: 80px;
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+}
+
 @media screen and (min-width: 768px) {
   .reviewImage {
     height: 95px;

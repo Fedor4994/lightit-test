@@ -32,6 +32,7 @@
 }
 
 .headerMenuLink {
+  font-size: 12px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -82,5 +83,9 @@
     justify-content: space-between;
     flex-direction: row;
     gap: 0;
+  }
+
+  .headerMenuLink {
+    font-size: 16px;
   }
 }
