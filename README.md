@@ -1,9 +1,10 @@
-# StuffStore [![Live page]](https://stuffstore.vercel.app/)
+# StuffStore [Live page](https://stuffstore.vercel.app/)
 
 ## Preparation
 
-> Install nodejs
-> Clone repo
+> Install Node.js
+
+> Clone repositorie
 
 ## Run project
 
