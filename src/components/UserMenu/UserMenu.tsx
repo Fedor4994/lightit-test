@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 
+import { openConfirmModal } from "../../utils/openConfirmModal";
 import { selectUser } from "../../redux/auth/auth-selectors";
 import { useAppDispatch } from "../../redux/store";
 import { logOut } from "../../redux/auth/auth-operations";
@@ -22,22 +21,9 @@ const UserMenu = () => {
         <div
           className={s.logout}
           onClick={() =>
-            confirmAlert({
-              title: "Confirm to logout",
-              message: "Are you sure to do this?",
-              buttons: [
-                {
-                  label: "Yes",
-                  onClick: () => {
-                    dispatch(logOut());
-                  },
-                },
-                {
-                  label: "No",
-                  onClick: () => {},
-                },
-              ],
-            })
+            openConfirmModal(() => {
+              dispatch(logOut());
+            }, "logout")
           }
         >
           <FaSignOutAlt size={16} />

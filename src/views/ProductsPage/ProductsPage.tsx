@@ -6,10 +6,7 @@ import Filter from "../../components/Filter/Filter";
 import { ProductsPageLoader } from "../../components/ProductsPageLoader/ProductsPageLoader";
 
 import { convertSortType } from "../../utils/convertSortType";
-import {
-  getAllProducts,
-  getAllProductsByCategorie,
-} from "../../http/productService";
+import { getProducts } from "../../http/productService";
 import { Product } from "../../types/produts";
 import { SortType } from "../../types/sortType";
 
@@ -35,10 +32,13 @@ const ProductsPage = () => {
     const getProduts = async () => {
       try {
         setIsLoading(true);
-        const { products, total } = await getAllProducts({
-          limit: 12,
-          page,
-          sort: sortType,
+        const { products, total } = await getProducts({
+          query: {
+            limit: 12,
+            page,
+            sort: sortType,
+          },
+          categorieName: categorie,
         });
         setProducts(products);
         setIsLoading(false);
@@ -48,28 +48,7 @@ const ProductsPage = () => {
       }
     };
 
-    const getProductsByCategorie = async () => {
-      try {
-        const { products, total } = await getAllProductsByCategorie({
-          query: {
-            limit: 12,
-            page,
-            sort: sortType,
-          },
-          categorieName: categorie,
-        });
-        setProducts(products);
-        setTotalProductsCount(total);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (categorie === "all products") {
-      getProduts();
-    } else {
-      getProductsByCategorie();
-    }
+    getProduts();
   }, [categorie, page, sortType]);
 
   const pageHandler = (nextPage: number) => {

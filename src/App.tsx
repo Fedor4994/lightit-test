@@ -3,18 +3,18 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
 
-import { useAppDispatch } from "../../redux/store";
-import { selectIsFetchingUser } from "../../redux/auth/auth-selectors";
-import { getCurrentUser } from "../../redux/auth/auth-operations";
+import { useAppDispatch } from "./redux/store";
+import { selectIsFetchingUser } from "./redux/auth/auth-selectors";
+import { getCurrentUser } from "./redux/auth/auth-operations";
 
-import PublicRoute from "../../HOCs/PublicRoute";
-import PrivateRoute from "../../HOCs/PrivateRoute";
-import Container from "../Container/Container";
-import Layout from "../../views/Layout/Layout";
-import ProductsPage from "../../views/ProductsPage/ProductsPage";
-import LoginPage from "../../views/LoginPage/LoginPage";
-import ProductDetailsPage from "../../views/ProductDetailsPage/ProductDetailsPage";
-import ReviewsPage from "../../views/ReviewsPage/ReviewsPage";
+import PublicRoute from "./HOCs/PublicRoute";
+import PrivateRoute from "./HOCs/PrivateRoute";
+import Container from "./components/Container/Container";
+import Layout from "./views/Layout/Layout";
+import ProductsPage from "./views/ProductsPage/ProductsPage";
+import LoginPage from "./views/LoginPage/LoginPage";
+import ProductDetailsPage from "./views/ProductDetailsPage/ProductDetailsPage";
+import ReviewsPage from "./views/ReviewsPage/ReviewsPage";
 
 function App() {
   const dispatch = useAppDispatch();

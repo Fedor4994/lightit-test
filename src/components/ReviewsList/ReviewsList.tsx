@@ -2,11 +2,10 @@ import { useState } from "react";
 import { FaEdit, FaTrash, FaUserAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { Review } from "../../types/review";
 import { selectUser } from "../../redux/auth/auth-selectors";
+import { openConfirmModal } from "../../utils/openConfirmModal";
 import StarsAverage from "../StarsAverage/StarsAverage";
 import Rate from "../Rate/Rate";
 
@@ -26,6 +25,12 @@ const ReviewsList = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editedRating, setEditedRating] = useState(0);
   const [editedMessage, setEditedMessage] = useState("");
+
+  const handleEdit = () => {
+    onEdit({ rating: editedRating, text: editedMessage });
+    setIsModalOpen(false);
+    toast.success("Review is edited successfully");
+  };
 
   return (
     <div className={s.reviewsWrapper}>
@@ -54,25 +59,12 @@ const ReviewsList = ({
                     </button>
                     <button
                       className={s.reviewControllButton}
-                      onClick={() => {
-                        confirmAlert({
-                          title: "Confirm to delete",
-                          message: "Are you sure to do this?",
-                          buttons: [
-                            {
-                              label: "Yes",
-                              onClick: () => {
-                                onDelete();
-                                toast.success("Review deleted successfully");
-                              },
-                            },
-                            {
-                              label: "No",
-                              onClick: () => {},
-                            },
-                          ],
-                        });
-                      }}
+                      onClick={() =>
+                        openConfirmModal(() => {
+                          onDelete();
+                          toast.success("Review deleted successfully");
+                        }, "delete")
+                      }
                     >
                       <FaTrash /> Delete
                     </button>
@@ -123,14 +115,7 @@ const ReviewsList = ({
               >
                 Cancel
               </button>
-              <button
-                className={s.modalButton}
-                onClick={() => {
-                  onEdit({ rating: editedRating, text: editedMessage });
-                  setIsModalOpen(false);
-                  toast.success("Review is edited successfully");
-                }}
-              >
+              <button className={s.modalButton} onClick={handleEdit}>
                 Edit
               </button>
             </div>

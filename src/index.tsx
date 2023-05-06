@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { persistor, store } from "./redux/store";
-import App from "./components/App/App";
+import App from "./App";
 import "./index.css";
 import { SkeletonTheme } from "react-loading-skeleton";
 

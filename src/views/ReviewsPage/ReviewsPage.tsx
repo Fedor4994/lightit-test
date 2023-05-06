@@ -40,22 +40,19 @@ const ReviewsPage = () => {
     </div>
   ) : (
     <ul className={s.reviewsList}>
-      {reviewsItems.map((reviewItem) => (
-        <li className={s.reviewItem} key={reviewItem.product._id}>
-          <Link
-            className={s.productWrapper}
-            to={`/products/${reviewItem.product._id}`}
-          >
+      {reviewsItems.map(({ product, review }) => (
+        <li className={s.reviewItem} key={product._id}>
+          <Link className={s.productWrapper} to={`/products/${product._id}`}>
             <img
               className={s.reviewImage}
-              src={reviewItem.product.images[0]}
+              src={product.images[0]}
               alt="product"
             />
-            <span>{reviewItem.product.title}</span>
+            <span>{product.title}</span>
           </Link>
           <div className={s.reviewWrapper}>
-            <StarsAverage rating={reviewItem.review.rating} />
-            <p>{reviewItem.review.text}</p>
+            <StarsAverage rating={review.rating} />
+            <p>{review.text}</p>
           </div>
         </li>
       ))}

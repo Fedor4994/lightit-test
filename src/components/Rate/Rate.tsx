@@ -3,7 +3,7 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 import s from "./Rate.module.scss";
 
-const rateArray = [1, 2, 3, 4, 5];
+const rateScale = [1, 2, 3, 4, 5];
 
 const Rate = ({
   rating,
@@ -16,7 +16,7 @@ const Rate = ({
 
   return (
     <ul className={s.rateList}>
-      {rateArray.map((rate) => (
+      {rateScale.map((rate) => (
         <button
           key={rate}
           onMouseEnter={() => setHoverRating(rate)}

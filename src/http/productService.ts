@@ -1,28 +1,23 @@
 import axios from "axios";
 import { Product, ProductsQuery } from "../types/produts";
 
-export const getAllProducts = async ({
-  page = 1,
-  limit = 10,
-  sort = "rating-desc-rank",
-}: ProductsQuery) => {
-  const { data } = await axios.get<{ products: Product[]; total: number }>(
-    `/products?page=${page}&limit=${limit}&sort=${sort}`
-  );
-  return data;
-};
-
-export const getAllProductsByCategorie = async ({
+export const getProducts = async ({
   query,
   categorieName,
 }: {
   query: ProductsQuery;
-  categorieName: string;
+  categorieName?: string;
 }) => {
   const { page = 1, limit = 10, sort = "rating-desc-rank" } = query;
+  const queryUrl = `page=${page}&limit=${limit}&sort=${sort}`;
+  let baseUrl = `/products/categories/${categorieName}`;
+
+  if (categorieName === "all products") {
+    baseUrl = "/products";
+  }
 
   const { data } = await axios.get<{ products: Product[]; total: number }>(
-    `/products/categories/${categorieName}?page=${page}&limit=${limit}&sort=${sort}`
+    `${baseUrl}?${queryUrl}`
   );
   return data;
 };

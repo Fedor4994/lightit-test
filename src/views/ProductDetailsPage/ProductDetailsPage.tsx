@@ -129,33 +129,34 @@ const ProductDetailsPage = () => {
     }
   };
 
+  const { brand, category, description, price, rating, title } = product;
+
   return (
     <div className={s.productDetailsPage}>
       <DetailsImage product={product} />
 
       <div className={s.descriptionWrapper}>
         <div className={s.productDescriptoin}>
-          <h1 className={s.productTitle}>{product.title}</h1>
+          <h1 className={s.productTitle}>{title}</h1>
 
           <div className={s.ratingInfo}>
-            <StarsAverage rating={product.rating} />{" "}
-            <span>{product.rating}</span> - average
+            <StarsAverage rating={rating} /> <span>{rating}</span> - average
           </div>
 
           <div className={s.divide}></div>
 
           <div className={s.characteristicsWrapper}>
-            <b>Price: {product.price}$</b>
-            <p>Brand name: {product.brand}</p>
+            <b>Price: {price}$</b>
+            <p>Brand name: {brand}</p>
             <div className={s.category}>
-              Category: <div className={s.categoryName}>{product.category}</div>
+              Category: <div className={s.categoryName}>{category}</div>
             </div>
           </div>
 
           <div className={s.divide}></div>
 
           <h3 className={s.descriptionText}>About:</h3>
-          <p className={s.descriptionText}>{product.description}</p>
+          <p className={s.descriptionText}>{description}</p>
 
           <div className={s.divide}></div>
         </div>
