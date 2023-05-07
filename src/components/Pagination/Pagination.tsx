@@ -27,6 +27,30 @@ const Pagination = ({
 
   const countOfFullPages = Number((totalProductsCount / 12).toFixed(0));
 
+  const goToFirstPage = () => {
+    scrollToTop();
+    setPage(1);
+    localStorage.setItem("page", "1");
+  };
+
+  const handelDecreasePage = () => {
+    scrollToTop();
+    increasePage(-1);
+    localStorage.setItem("page", (page - 1).toString());
+  };
+
+  const handleIncreasePage = () => {
+    scrollToTop();
+    increasePage(1);
+    localStorage.setItem("page", (page + 1).toString());
+  };
+
+  const goToLastPage = () => {
+    scrollToTop();
+    setPage(countOfFullPages + 1);
+    localStorage.setItem("page", (countOfFullPages + 1).toString());
+  };
+
   return (
     <div className={s.pagination}>
       <button
@@ -43,11 +67,7 @@ const Pagination = ({
                 cursor: "pointer",
               }
         }
-        onClick={() => {
-          scrollToTop();
-          setPage(1);
-          localStorage.setItem("page", "1");
-        }}
+        onClick={goToFirstPage}
       >
         <FaAngleDoubleLeft size={20} />
       </button>
@@ -65,11 +85,7 @@ const Pagination = ({
                 cursor: "pointer",
               }
         }
-        onClick={() => {
-          scrollToTop();
-          increasePage(-1);
-          localStorage.setItem("page", (page - 1).toString());
-        }}
+        onClick={handelDecreasePage}
       >
         <FaAngleLeft size={20} />
       </button>
@@ -90,11 +106,7 @@ const Pagination = ({
                 cursor: "pointer",
               }
         }
-        onClick={() => {
-          scrollToTop();
-          increasePage(1);
-          localStorage.setItem("page", (page + 1).toString());
-        }}
+        onClick={handleIncreasePage}
       >
         <FaAngleRight size={20} />
       </button>
@@ -113,11 +125,7 @@ const Pagination = ({
                 cursor: "pointer",
               }
         }
-        onClick={() => {
-          scrollToTop();
-          setPage(countOfFullPages + 1);
-          localStorage.setItem("page", (countOfFullPages + 1).toString());
-        }}
+        onClick={goToLastPage}
       >
         <FaAngleDoubleRight size={20} />
       </button>
