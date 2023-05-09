@@ -66,6 +66,11 @@
   color: var(--logo-text-color);
 }
 
+.reviewsTitle {
+  margin-top: 20px;
+  color: var(--logo-text-color);
+}
+
 @media screen and (min-width: 768px) {
   .productDetailsPage {
     flex-direction: row;

@@ -1,13 +1,9 @@
 import { useState } from "react";
-import { FaEdit, FaTrash, FaUserAlt } from "react-icons/fa";
-import { useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 
 import { Review } from "../../types/review";
-import { selectUser } from "../../redux/auth/auth-selectors";
-import { openConfirmModal } from "../../utils/openConfirmModal";
-import StarsAverage from "../StarsAverage/StarsAverage";
 import Rate from "../Rate/Rate";
+import ReveiwCard from "../ReviewCard/ReveiwCard";
 
 import s from "./ReviewsList.module.scss";
 
@@ -20,8 +16,6 @@ const ReviewsList = ({
   onEdit: (newReviewInfo: Pick<Review, "rating" | "text">) => void;
   onDelete: () => void;
 }) => {
-  const currentUser = useSelector(selectUser);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editedRating, setEditedRating] = useState(0);
   const [editedMessage, setEditedMessage] = useState("");
@@ -34,54 +28,19 @@ const ReviewsList = ({
 
   return (
     <div className={s.reviewsWrapper}>
-      <h2 className={s.reviewsTitle}>Reviews:</h2>
-
       {reviews.length === 0 ? (
         <p>There not reviews yet</p>
       ) : (
         <ul>
           {reviews.map((review) => (
-            <li className={s.reviewCard} key={review.userId}>
-              <p className={s.username}>
-                {" "}
-                <FaUserAlt /> {review.username}
-                {review.userId === currentUser._id && (
-                  <>
-                    <button
-                      className={s.reviewControllButton}
-                      onClick={() => {
-                        setEditedMessage(review.text);
-                        setEditedRating(review.rating);
-                        setIsModalOpen(true);
-                      }}
-                    >
-                      <FaEdit /> Edit
-                    </button>
-                    <button
-                      className={s.reviewControllButton}
-                      onClick={() =>
-                        openConfirmModal(() => {
-                          onDelete();
-                          toast.success("Review deleted successfully");
-                        }, "delete")
-                      }
-                    >
-                      <FaTrash /> Delete
-                    </button>
-                  </>
-                )}
-                {review.isEdited && (
-                  <span className={s.isEdited}>(edited)</span>
-                )}
-              </p>
-
-              <div className={s.mainData}>
-                <StarsAverage rating={review.rating} />
-                <p>
-                  {new Date(review.createdAt).toLocaleString().slice(0, 17)}
-                </p>
-              </div>
-              <p>{review.text}</p>
+            <li key={review.userId}>
+              <ReveiwCard
+                review={review}
+                setEditedMessage={setEditedMessage}
+                setEditedRating={setEditedRating}
+                setIsModalOpen={setIsModalOpen}
+                onDelete={onDelete}
+              />
             </li>
           ))}
         </ul>

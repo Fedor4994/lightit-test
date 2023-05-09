@@ -1,0 +1,33 @@
+.reviewCard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 15px;
+}
+.username {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.mainData {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewControllButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--logo-text-color);
+  border: none;
+}
+
+.isEdited {
+  font-size: 12px;
+  opacity: 0.6;
+}

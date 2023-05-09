@@ -178,6 +178,7 @@ const ProductDetailsPage = () => {
           </p>
         )}
 
+        <h2 className={s.reviewsTitle}>Reviews:</h2>
         <ReviewsList
           onEdit={editReview}
           onDelete={deleteReview}
